@@ -1,4 +1,4 @@
 <p>
-  Primeiro Processo: {{primeiroProcesso.nome}}
+  Primeiro Processo: {{primeiroProcesso?.nome}}
 </p>
-<app-lista-processos [primeiroProcesso]="primeiroProcesso"></app-lista-processos>
+<app-lista-processos (processoPrincipal)="obterPrimeiroProcesso($event)"></app-lista-processos>

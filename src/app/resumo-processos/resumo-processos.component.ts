@@ -15,4 +15,8 @@ export class ResumoProcessosComponent implements OnInit {
   ngOnInit() {
   }
 
+  obterPrimeiroProcesso(event: Processo){
+    this.primeiroProcesso = event;
+  }
+
 }

@@ -1,5 +1,5 @@
 import { Processo } from './lista-processos.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ListaProcessosService } from './lista-processos.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ListaProcessosService } from './lista-processos.service';
 export class ListaProcessosComponent implements OnInit {
 
   processos: Processo[];
-  @Input() primeiroProcesso: Processo;
+  @Output("processoPrincipal") primeiroProcesso = new EventEmitter<Processo>();  
 
   constructor(private listaProcessosService : ListaProcessosService) { }
 
@@ -22,9 +22,10 @@ export class ListaProcessosComponent implements OnInit {
     this.listaProcessosService.consultarEtapasProcesso()
       .subscribe(processos => {
         this.processos = processos;
-        this.primeiroProcesso = this.processos[0];
+        this.primeiroProcesso.emit(processos[0]);
         console.log(this.processos[0]);        
       });
   }
+  
 
 }
